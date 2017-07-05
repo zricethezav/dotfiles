@@ -5,8 +5,10 @@
 
 set shell=zsh
 
+
 " [vim-plug]
 call plug#begin()
+
 
 " [define plugins]
 Plug 'scrooloose/nerdtree'
@@ -20,6 +22,7 @@ Plug 'https://github.com/vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
+
 filetype plugin indent on
 filetype plugin on
 syntax enable
@@ -28,6 +31,7 @@ syntax enable
 set statusline=%F%m%r%h%w\ %y\ [\ A(%03.3b)\ .\:.\ H(%02.2B)\ .\:.\ L%04l\ -\ 
         \C%04v\ .\:.\ %p%%\ .\:.\ %L\ Length\ ]
 set laststatus=2
+
 
 " [basic settings]
 set clipboard=unnamed
@@ -45,6 +49,7 @@ set textwidth=80
 set si " Smart indent
 set wrap
 
+
 " [cursor]
 let &t_ti.="\<Esc>[1 q"
 let &t_SI.="\<Esc>[5 q"
@@ -58,13 +63,31 @@ let &t_te.="\<Esc>[0 q"
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
+
 " [whitespace linter]
 " usage :set list, :set nolist
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 let g:go_highlight_trailing_whitespace_error=0
 
-" [plugin settings]
 
+" [delete whitespace on save]
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
+
+" [last edit position on open]
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+
+" [plugin settings]
 " [snipmate] 
 imap <tab> <Plug>snipMateNextOrTrigger
 smap <tab> <Plug>snipMateNextOrTrigger
