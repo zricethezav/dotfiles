@@ -22,6 +22,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -150,5 +152,20 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
-
 let g:go_list_type = "quickfix"
+
+
+" [Searching]
+nmap ; :Buffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>g :Ag<CR>
+nmap <Leader>gg :Ag!<CR>
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" [NerdTree]
+let NERDTreeIgnore = ['\.pyc$']
+

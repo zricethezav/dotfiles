@@ -41,8 +41,7 @@ t-a() {tmux a -t "$1"; }
 
 # [fzf]
 fzfp() {fzf --preview 'head -100 {}';}
-fzfv() {vim $(fzf)}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fzfv() {vim $(fzf)}# --files: List files that would be searched but do not search
 
 # [go]
 export GOPATH=$HOME/Go
@@ -53,11 +52,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
 
-# [C flags]
-export SDL_HOME=/usr/local/Cellar/sdl2/2.0.6
-export CGO_CFLAGS=-I/usr/local/Cellar/sdl2/2.0.6/include
-export CGO_LDFLAGS=-L/usr/local/Cellar/sdl2/2.0.6/lib
-
 export PATH=$PATH:/usr/local/bin:/usr/local/etc/bash_completion.d:/usr/local:/usr/local/include:/usr/local/sbin:$GOPATH/bin:$GOPATH:/Library/go_appengine/:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local/Cellar
 
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
