@@ -18,7 +18,7 @@ targets=(
     'tmux'
     'git'
     'python'
-    'ag'
+    'silversearcher-ag'
     'transmission'
 )
 
@@ -59,6 +59,8 @@ do
         sudo apt -y install vim
     elif [[ $platform == 'mac' ]] && [[ $target == 'zsh' ]]; then
         brew install zsh zsh-completions
+    elif [[ $platform == 'mac' ]] && [[ $target == 'silversearcher-ag' ]]; then
+        brew install the_silver_searcher
     else
         install $target
     fi
@@ -73,14 +75,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 git clone https://github.com/zricethezav/dotfiles
-cp dotfiles/tmux.conf ~/.tmux.conf
-cp dotfiles/zshrc ~/.zshrc
-cp dotfiles/vimrc ~/.vimrc
-rm -rf dotfiles
+sudo cp dotfiles/tmux.conf ~/.tmux.conf
+sudo cp dotfiles/vimrc ~/.vimrc
 
 # Switch to Oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo cp dotfiles/zshrc ~/.zshrc
+sudo sh zsh
 
-
-
-
+rm -rf dotfiles
