@@ -25,6 +25,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
+Plug 'https://github.com/majutsushi/tagbar'
 
 call plug#end()
 
@@ -169,3 +170,5 @@ command! -bang -nargs=* Ag
 " [NerdTree]
 let NERDTreeIgnore = ['\.pyc$']
 
+" [Tagbar]
+nnoremap <silent> <Leader>tb :TagbarToggle<CR>

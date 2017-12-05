@@ -108,4 +108,5 @@ alias ll='ls -lv --group-directories-first'
 alias mkdir='mkdir -p'
 alias ds='dirs -v'
 alias df='df -kTh'
-
+alias ctags='`brew --prefix`/bin/ctags'
+alias gitags='ctags -R -f ./.git/tags .'

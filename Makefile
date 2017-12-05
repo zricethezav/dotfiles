@@ -8,7 +8,7 @@ ifeq ($(UNAME),Linux)
 	sudo apt-get install -y silversearcher-ag tmux transmission
 endif
 ifeq ($(UNAME),Darwin)
-	brew install tmux transmission the_silver_searcher 
+	brew install tmux transmission the_silver_searcher ctags 
 endif
 	echo Done installing packages
 bash:
