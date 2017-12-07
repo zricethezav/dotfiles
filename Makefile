@@ -1,7 +1,7 @@
 DOTFILES := $(shell pwd)
 UNAME := $(shell uname)
-all: pkgs bash tmux vim done
-.PHONY: pkgs bash tmux vim git done
+all: pkgs bash tmux vim done sec
+.PHONY: pkgs bash tmux vim git done sec
 
 pkgs:
 ifeq ($(UNAME),Linux)
@@ -22,5 +22,10 @@ vim:
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	ln -fs $(DOTFILES)/vimrc ${HOME}/.vimrc
 	vim +PlugInstall +qall
+sec:
+	$(shell chmod 755 sec/install.sh)
+	$(shell sec/install.sh)
+	ln -fs $(DOTFILES)/sec/scripts.sh ${HOME}/.sec/scripts.sh
+
 done:
 	chsh -s /bin/bash

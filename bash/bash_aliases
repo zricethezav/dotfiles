@@ -95,7 +95,35 @@ mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
 mkzip() { zip -r "${1%%/}.zip" "${1%%/}/"; }
 
-alias mac='ifconfig | grep HWaddr'
+# [ network tools ]
+rnd() {
+    # reboot network device
+    ifconfig $1 down
+    ifconfig $1 up
+}
+
+monitor() {
+    ifconfig $1 down
+    iwconfig $1 mode monitor
+    ifconfig $1 up
+
+}
+managed() {
+    ifconfig $1 down
+    iwconfig $1 mode managed 
+    ifconfig $1 up
+}
+
+mac() {
+    if [ ! -z $1 ]; then
+        cat /sys/class/net/$1/address
+    else
+        echo "Please provide a device interface"
+    fi
+}
+
+
+# [ aliases ]
 alias restart='sudo reboot'
 alias shutdown='sudo halt'
 alias apt-get='sudo apt-get'
