@@ -12,6 +12,7 @@ ifeq ($(UNAME),Darwin)
 endif
 	echo Done installing packages
 bash:
+	mkdir $(HOME)/.marks
 	ln -fs $(DOTFILES)/bash/bash_aliases ${HOME}/.bash_aliases
 	ln -fs $(DOTFILES)/bash/bashrc ${HOME}/.bashrc
 	ln -fs $(DOTFILES)/bash/bash_profile ${HOME}/.bash_profile

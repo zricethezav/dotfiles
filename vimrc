@@ -25,7 +25,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
-Plug 'https://github.com/majutsushi/tagbar'
+" Plug 'https://github.com/majutsushi/tagbar'
 
 call plug#end()
 
@@ -39,7 +39,7 @@ set statusline=%F%m%r%h%w\ %y\ [\ A(%03.3b)\ .\:.\ H(%02.2B)\ .\:.\ L%04l\ -\
 set laststatus=2
 
 " [basic settings]
-set clipboard=unnamed
+" set clipboard=unnamed
 set number
 set encoding=utf-8
 set cinoptions=:s,ps,ts,cs
