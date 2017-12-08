@@ -26,7 +26,7 @@ vim:
 sec:
 	$(shell chmod 755 sec/install.sh)
 	$(shell sec/install.sh)
-	ln -fs $(DOTFILES)/sec/scripts.sh ${HOME}/.sec/scripts.sh
+	ln -fs $(DOTFILES)/sec ${HOME}/.sec
 
 done:
 	chsh -s /bin/bash
