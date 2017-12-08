@@ -51,9 +51,7 @@ set tabstop=4
 set shiftwidth=4
 set wildmenu
 set wildmode=full
-set textwidth=80
 set si " Smart indent
-set wrap
 set autowrite
 
 " [cursor]

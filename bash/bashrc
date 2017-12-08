@@ -15,6 +15,7 @@ fi
 if [[ $OSTYPE == 'linux-gnu' ]]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	alias ls='ls -p --color=auto'
+    setxkbmap -layout us -option ctrl:nocaps
 elif [[ $OSTYPE =~ 'darwin' ]]; then
 	alias ls='ls -Gp'
 fi
@@ -34,4 +35,3 @@ parse_git_branch() {
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 source ~/.bash_aliases
-source ~/.sec/scripts.sh
