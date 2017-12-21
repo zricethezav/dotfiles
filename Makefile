@@ -1,8 +1,8 @@
 DOTFILES := $(shell pwd)
 UNAME := $(shell uname)
 VIMVERSION := $(shell vim --version | head -1 | cut -d ' ' -f 5 | head -c 1 )
-all: pkgs bash tmux vim git done 
-.PHONY: pkgs bash tmux vim git done
+all: pkgs bash tmux vim git aws done 
+.PHONY: pkgs bash tmux vim git aws done
 
 pkgs:
 ifeq ($(UNAME),Linux)
@@ -18,8 +18,10 @@ bash:
 	ln -fs $(DOTFILES)/bash/bash_aliases ${HOME}/.bash_aliases
 	ln -fs $(DOTFILES)/bash/bashrc ${HOME}/.bashrc
 	ln -fs $(DOTFILES)/bash/bash_profile ${HOME}/.bash_profile
+
 tmux:
 	ln -fs $(DOTFILES)/tmux.conf ${HOME}/.tmux.conf
+
 vim:
 ifeq ($(UNAME),Linux)
 	if [ $(VIMVERSION) -lt 9 ]; then\
@@ -33,6 +35,7 @@ endif
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	ln -fs $(DOTFILES)/vimrc ${HOME}/.vimrc
 	vim +PlugInstall +qall
+
 git:
 ifeq ($(UNAME),Linux)
 	[ -f /etc/bash_completion.d/git-completion.bash ] || \
@@ -45,6 +48,11 @@ ifeq ($(UNAME),Darwin)
 		/usr/local/etc/bash_completion.d/
 endif
 
+aws:
+	@echo "Installing aws cli tool"
+	$(shell pip install awscli --upgrade --user &>/dev/null)
+	@echo "Done Installing aws cli tool"
+	@echo "to install seperate profiles for fun and for work:\n\n\t aws configure --profile {profile_name}\n"
 
 done:
 	chsh -s /bin/bash
