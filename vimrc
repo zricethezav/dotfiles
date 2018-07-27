@@ -1,32 +1,26 @@
 " File: .vimrc
 " Author: zrice
 " Description: vim config
-" Last Modified: July 04, 2017
+" Last Modified: Jul 25, 2018
 
 set shell=zsh
 
-
 " [vim-plug]
 call plug#begin()
-
-
-" [define plugins]
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'https://github.com/vim-scripts/tComment'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+let g:go_auto_type_info = 1
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
-" Plug 'https://github.com/majutsushi/tagbar'
-
 call plug#end()
 
 filetype plugin indent on
@@ -85,20 +79,6 @@ endif
 " [last edit position on open]
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" [plugin settings]
-" [snipmate] 
-imap <tab> <Plug>snipMateNextOrTrigger
-smap <tab> <Plug>snipMateNextOrTrigger
-let g:snips_email="zach@agrible.com"
-let g:snips_name="zach"
-let g:snips_github="github.com/aginfo"
-
-" [vim-surround]
-" yss{surround}
-
-" [t_comment]
-" gcc in select or visual mode
-
 " [lightline & ALE]
 set t_Co=256
 let g:lightline = {
@@ -150,8 +130,16 @@ nnoremap <leader>a :cclose<CR>
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
+autocmd FileType go nmap <leader>n  <Plug>(go-test-func)
 let g:go_list_type = "quickfix"
+
+" [colors]
+colo seoul256
+" seoul256 (dark):
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+let g:seoul256_background = 235
+colo seoul256
 
 
 " [Searching]
@@ -167,6 +155,20 @@ command! -bang -nargs=* Ag
 
 " [NerdTree]
 let NERDTreeIgnore = ['\.pyc$']
+augroup nerd_loader
+  autocmd!
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,BufNew *
+        \  if isdirectory(expand('<amatch>'))
+        \|   call plug#load('nerdtree')
+        \|   execute 'autocmd! nerd_loader'
+        \| endif
+augroup END
 
 " [Tagbar]
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
+
+" [tags]
+set tags=./tags;/
+
+

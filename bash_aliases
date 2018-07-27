@@ -1,27 +1,3 @@
-# [ journal ]
-logit() {
-    if [[ ! -f ~/.logit ]]; then
-        touch ~/.logit
-    fi
-
-    if [[ -z $1 ]]; then
-        vim ~/.logit_tmp +startinsert
-        if [[ ! -f ~/.logit_tmp ]]; then
-            echo "Log entry cancelled"
-            return
-        fi
-        sed -i -e $'s/^/    /' ~/.logit_tmp
-        echo -e "[ `date '+%Y-%m-%d %H:%M:%S'` ]\n$(cat ~/.logit_tmp)" > ~/.logit_tmp
-        cat ~/.logit_tmp ~/.logit >> ~/.logit_merge; mv ~/.logit_merge ~/.logit
-        rm ~/.logit_tmp
-    elif [[ $1 = "head" ]]; then
-        head ~/.logit
-    elif [[ $1 = "tail" ]]; then
-        tail ~/.logit
-    elif [[ $1 = "cat" ]]; then
-        cat ~/.logit
-    fi
-}
 # [ torrents ]
 tsm() {
     transmission-remote -l
@@ -42,6 +18,7 @@ tsm-quit() {
 tsm-purge() { 
     transmission-remote -t"$1" --remove-and-delete
 } 
+
 # [ tmux ]
 t-n() {
     tmux new -s "$1"
@@ -61,6 +38,7 @@ t-d() {
 t-a() {
     tmux a -t "$1"
 }
+
 # [ fzf ]
 fzfp() {
     fzf --preview 'head -100 {}'
@@ -68,6 +46,7 @@ fzfp() {
 fzfv() {
     vim $(fzf)
 }
+
 # [ archive utils ]
 extract()
 {
@@ -95,35 +74,7 @@ mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
 mkzip() { zip -r "${1%%/}.zip" "${1%%/}/"; }
 
-# [ network tools ]
-rnd() {
-    # reboot network device
-    ifconfig $1 down
-    ifconfig $1 up
-}
-
-monitor() {
-    ifconfig $1 down
-    iwconfig $1 mode monitor
-    ifconfig $1 up
-
-}
-managed() {
-    ifconfig $1 down
-    iwconfig $1 mode managed 
-    ifconfig $1 up
-}
-
-mac() {
-    if [ ! -z $1 ]; then
-        cat /sys/class/net/$1/address
-    else
-        echo "Please provide a device interface"
-    fi
-}
-
-
-# [ path shortcut ]
+# [ marks ]
 export MARKPATH=$HOME/.marks
 function jump { 
   cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
@@ -159,3 +110,6 @@ alias ds='dirs -v'
 alias df='df -kTh'
 alias ctags='`brew --prefix`/bin/ctags'
 alias gitags='ctags -R -f ./.git/tags .'
+alias bn='git checkout -B'
+alias b='git branch'
+alias gc='git checkout'
