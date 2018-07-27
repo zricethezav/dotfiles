@@ -21,7 +21,9 @@ if [ "$(uname -s)" = 'Darwin' ]; then
     #     /usr/local/etc/bash_completion.d/
 else
 # linux
-    sudo apt install -y git vim tmux wget fzf transmission virtualbox virtualbox-ext-pack
+    sudo apt install -y git vim tmux wget transmission virtualbox virtualbox-ext-pack
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    sudo -y ~/.fzf/install
     # [ -f /etc/bash_completion.d/git-completion.bash ] || \
     #     sudo wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -P \
     #     /etc/bash_completion.d/

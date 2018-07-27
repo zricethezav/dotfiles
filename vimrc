@@ -3,7 +3,7 @@
 " Description: vim config
 " Last Modified: Jul 25, 2018
 
-set shell=zsh
+set shell=/bin/bash
 
 " [vim-plug]
 call plug#begin()
