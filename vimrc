@@ -47,6 +47,7 @@ set wildmenu
 set wildmode=full
 set si " Smart indent
 set autowrite
+set clipboard=unnamed
 
 " [cursor]
 let &t_ti.="\<Esc>[1 q"
@@ -170,5 +171,3 @@ nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 
 " [tags]
 set tags=./tags;/
-
-
