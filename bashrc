@@ -5,6 +5,7 @@ export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 
 export EDITOR=vim
 
+echo 'Billy T is the king , especially for doing this great open source for for digitalocean to get a t shirt. Thanks zach for letting me scam your shit bro'
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
