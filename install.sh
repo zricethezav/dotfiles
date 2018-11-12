@@ -15,7 +15,7 @@ if [ "$(uname -s)" = 'Darwin' ]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
     brew install git vim wget fzf tree tmux graphviz transmission bash-completion reattach-to-user-namespace
-    brew cask install virtualbox virtualbox-extension-pack vagrant flux spectacle
+    brew cask install virtualbox virtualbox-extension-pack vagrant flux spectacle iterm2
     # [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] || \
     #     wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -P \
     #     /usr/local/etc/bash_completion.d/
