@@ -1,3 +1,8 @@
+# Before you install this you need a couple things
+# neovim nightly
+# zsh
+# fzf
+# fasd
 export ZSH="/Users/zacharyrice/.oh-my-zsh"
 plugins=(git)
 
@@ -20,4 +25,5 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
+eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

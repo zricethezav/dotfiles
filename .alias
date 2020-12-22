@@ -1,6 +1,6 @@
 alias vim='nvim'
 alias vi='nvim'
-alias v='nvim'
+alias v='f -e nvim'
 alias bn='git checkout -B'
 alias b='git branch'
 alias gc='git checkout'
