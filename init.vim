@@ -17,6 +17,7 @@ Plug 'puremourning/vimspector'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-signify'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
@@ -33,15 +34,10 @@ set autoread
 set updatetime=100
 set cot=menuone,noinsert,noselect shm+=c
 set hid clipboard=unnamed backspace=indent,eol,start autoindent
-set expandtab ts=4 sw=4 si autowrite nu rnu
+set expandtab ts=4 sw=4 si autowrite nu 
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp// undodir=.undo/,~/.undo/,/tmp//
 set spelllang=en_us
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 " whitespace linter, usage :set list, :set nolist
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -103,6 +99,17 @@ nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB', 'vscode-go' ]
+
+
+"
+" [ NERDTREE ]
+"
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store$', '\.git$'] "
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 
 "

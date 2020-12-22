@@ -1,0 +1,98 @@
+#!/bin/bash
+
+#
+# [ GITLAB SAST ANALYZERS ]
+#
+function analyzer-run() {
+GOOS=linux go build -o analyzer
+docker build -t analyzer .
+docker run --rm \
+  --volume "$1":/tmp/project \
+  --env CI_PROJECT_DIR=/tmp/project \
+  analyzer \
+  /analyzer run
+}
+
+
+# 
+# [ MARKS ]
+#
+export MARKPATH=$HOME/.marks
+function jump {
+  cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function mark {
+  mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+function unmark {
+  rm -i "$MARKPATH/$1"
+}
+function marks {
+  \ls -l "$MARKPATH" | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
+}
+function j {
+  jump $1
+}
+function m {
+  mark $1
+}
+
+
+#
+# [ TMUX ]
+#
+function tn() {
+    tmux new -s "$1"
+}
+function tls() {
+    tmux ls
+}
+function tk-all() {
+    tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill
+}
+function tk() {
+    tmux kill-session -t "$1"
+}
+function td() {
+    tmux detach
+}
+function ta() {
+    tmux a -t "$1"
+}
+
+#
+# [ TORRENTS ]
+# 
+function tsm() {
+    transmission-remote -l
+}
+function tsm-daemon() {
+    transmission-daemon
+}
+function tsm-add() {
+    transmission-remote --add "$1"
+}
+function tsm-clearcompleted() {
+        transmission-remote -l | grep 100% | grep Done | \
+        awk '{print $4}' | xargs -n 1 -I % transmission-remote -t % -r
+}
+function tsm-quit() {
+    killall transmission-daemon
+}
+function tsm-purge() {
+    transmission-remote -t"$1" --remove-and-delete
+}
+
+#
+# [ FZF ] 
+# 
+function fzfp() {
+    fzf --preview 'head -100 {}'
+}
+function fzfv() {
+    nvim $(fzf)
+}
+function fd() {
+    local dir dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) && cd "$dir"
+}
+

@@ -7,6 +7,9 @@
     bn = checkout -B 
     co = checkout
 
+[core]
+	excludesfile = ~/.gitignore
+
 [includeIf "gitdir:~/code/gitlab/"]
     path = .gitconfig-work
 
