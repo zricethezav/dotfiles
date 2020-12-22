@@ -5,6 +5,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export GOPATH=$HOME/Go
 export PATH=$PATH:$GOPATH/bin
+export TERM=screen-256color
 
 # [ marks ]
 export MARKPATH=$HOME/.marks
@@ -101,7 +102,6 @@ alias df='df -kTh'
 alias sp='source ~/.zshrc'
 alias sf='l | fzf'
 alias cat='bat'
-# alias code="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
 
 source ~/.zsh_creds
 source ~/.zsh_gitlab

@@ -65,12 +65,16 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 "
 " [ COLOR ] 
-"
 set bg=dark
 let g:edge_style = 'neon'
-let &stl = " %f %m"
-let g:edge_italicize_strings = 1
-colo edge
+let g:edge_enable_italic = 1
+colorscheme edge
+
+
+"
+" [ TMUX ]
+set t_ZH=^[[3m
+set t_ZR=^[[23m
 
 
 "
@@ -127,7 +131,7 @@ let g:diagnostic_enable_virtual_text = 1
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
   end
-  local servers = {'gopls'}
+  local servers = {'gopls', 'pyls'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
