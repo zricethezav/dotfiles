@@ -16,21 +16,21 @@ Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/edge'
-
 call plug#end()
-
-filetype plugin indent on
-syntax enable
 
 
 "
 " [ BASIC SETTINGS ]
 " 
+filetype plugin indent on
+syntax enable
+set autoread 
+set updatetime=100
 set cot=menuone,noinsert,noselect shm+=c
 set hid clipboard=unnamed backspace=indent,eol,start autoindent
 set expandtab ts=4 sw=4 si autowrite nu rnu
@@ -75,12 +75,6 @@ colorscheme edge
 " [ TMUX ]
 set t_ZH=^[[3m
 set t_ZR=^[[23m
-
-
-"
-" [ GIT ]
-" 
-let g:gitgutter_terminal_reports_focus=0
 
 
 "
