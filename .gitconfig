@@ -7,8 +7,6 @@
     bn = checkout -B 
     co = checkout
 
-[includeIf "gitdir:~/code/"]
-    path = .gitconfig-play
 [includeIf "gitdir:~/code/gitlab/"]
     path = .gitconfig-work
 

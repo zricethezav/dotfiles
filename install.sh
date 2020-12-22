@@ -5,5 +5,4 @@ ln -s -f ~/dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 cp .gitconfig-work ~/.gitconfig-work
-cp .gitconfig-play ~/.gitconfig-play
 ln -s -f ~/dotfiles/.gitconfig ~/.gitconfig
