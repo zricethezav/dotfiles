@@ -1,19 +1,5 @@
 #!/bin/bash
 
-#
-# [ GITLAB SAST ANALYZERS ]
-#
-function analyzer-run() {
-GOOS=linux go build -o analyzer
-docker build -t analyzer .
-docker run --rm \
-  --volume "$1":/tmp/project \
-  --env CI_PROJECT_DIR=/tmp/project \
-  analyzer \
-  /analyzer run
-}
-
-
 # 
 # [ MARKS ]
 #

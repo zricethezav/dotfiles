@@ -140,7 +140,10 @@ let g:diagnostic_enable_virtual_text = 1
   end
 EOF
 
-command! Format execute 'lua vim.lsp.buf.formatting()'
+" nmap ff :Format<CR>
+nnoremap <silent> ff    <cmd>lua vim.lsp.buf.formatting()<CR>
+" command! Format execute 'lua vim.lsp.buf.formatting()'
+
 :lua << EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
