@@ -1,6 +1,6 @@
 # Dotfiles 
 
-### Before you install this you need a couple things
+### Before you use this you need a couple things
 - neovim nightly
 - zsh
 - fzf
