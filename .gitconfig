@@ -1,0 +1,14 @@
+[user]
+    name = Zach Rice
+    email = zricer@protonmail.com
+[alias]
+    l = log --name-status
+    lg = log --name-status --graph --decorate
+    bn = checkout -B 
+    co = checkout
+
+[includeIf "gitdir:~/code/"]
+    path = .gitconfig-play
+[includeIf "gitdir:~/code/gitlab/"]
+    path = .gitconfig-work
+
