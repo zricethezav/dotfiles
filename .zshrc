@@ -1,8 +1,5 @@
-# Before you install this you need a couple things
-# neovim nightly
-# zsh
-# fzf
-# fasd
+#!/bin/bash
+
 export ZSH="/Users/zacharyrice/.oh-my-zsh"
 plugins=(git)
 

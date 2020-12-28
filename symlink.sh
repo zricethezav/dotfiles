@@ -8,6 +8,7 @@ ln -s -f ~/dotfiles/.zshrc ~/.zshrc
 ln -s -f ~/dotfiles/.functions ~/.config/zsh/.functions
 ln -s -f ~/dotfiles/.alias ~/.config/zsh/.alias
 ln -s -f ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s -f ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 
 ln -s -f ~/dotfiles/.gitignore ~/.gitignore
 ln -s -f ~/dotfiles/.gitconfig-work ~/.gitconfig-work

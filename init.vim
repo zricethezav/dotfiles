@@ -17,11 +17,12 @@ Plug 'puremourning/vimspector'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-signify'
-Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/edge'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons' " Use https://github.com/ryanoasis/nerd-fonts
 call plug#end()
 
 
@@ -38,6 +39,7 @@ set expandtab ts=4 sw=4 si autowrite nu
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp// undodir=.undo/,~/.undo/,/tmp//
 set spelllang=en_us
+set encoding=UTF-8
 
 " whitespace linter, usage :set list, :set nolist
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -61,6 +63,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 "
 " [ COLOR ] 
+"
 set bg=dark
 let g:edge_style = 'neon'
 let g:edge_enable_italic = 1
@@ -69,6 +72,7 @@ colorscheme edge
 
 "
 " [ TMUX ]
+"
 set t_ZH=^[[3m
 set t_ZR=^[[23m
 
@@ -132,6 +136,7 @@ let g:diagnostic_enable_virtual_text = 1
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
   end
+
   local servers = {'gopls', 'pyls'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
