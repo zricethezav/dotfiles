@@ -41,9 +41,9 @@ env:
 window:
   padding:
     x: 3
-    y: 4
+    y: 3
   dynamic_padding: true
-  decorations: transparent 
+  decorations: buttonless
 
 # Sample Font configuration for font: Monoid.
 # Feel free to use different font configuration family & face for each sections
