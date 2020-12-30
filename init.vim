@@ -38,6 +38,7 @@ set hid clipboard=unnamed backspace=indent,eol,start autoindent
 set expandtab ts=4 sw=4 si autowrite nu 
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp// undodir=.undo/,~/.undo/,/tmp//
+set mouse=a
 set spelllang=en_us
 set encoding=UTF-8
 
@@ -137,7 +138,7 @@ let g:diagnostic_enable_virtual_text = 1
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
   end
 
-  local servers = {'gopls', 'pyls'}
+  local servers = {'gopls', 'pyls', 'yamlls', 'vimls', 'bashls', 'rls'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -170,3 +171,4 @@ EOF
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+

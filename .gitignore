@@ -6,3 +6,8 @@ Desktop.ini
 
 # Compiled Python files
 *.pyc
+
+
+# Added by cargo
+
+/target
