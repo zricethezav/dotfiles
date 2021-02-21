@@ -10,6 +10,7 @@ export TERM=screen-256color
 source ~/.config/zsh/.functions
 source ~/.config/zsh/.alias
 source ~/.config/zsh/.gitlab
+source ~/.config/zsh/.reddit
 
 source $HOME/.cargo/env
 

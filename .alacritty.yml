@@ -1,33 +1,27 @@
-# Colors (Gruvbox dark)
 colors:
-  # Default colors
-  primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
-
-  # Normal colors
-  normal:
-    black:   '#282828'
-    red:     '#cc241d'
-    green:   '#98971a'
-    yellow:  '#d79921'
-    blue:    '#458588'
-    magenta: '#b16286'
-    cyan:    '#689d6a'
-    white:   '#a89984'
-
-  # Bright colors
-  bright:
-    black:   '#928374'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#ebdbb2'
+    primary:
+      background: "0x2b2d3a"
+      foreground: "0xc5cdd9"
+  
+    normal:
+      black: "0x363a4e"
+      red: "0xec7279"
+      green: "0xa0c980"
+      yellow: "0xdeb974"
+      blue: "0x6cb6eb"
+      magenta: "0xd38aea"
+      cyan: "0x5dbbc1"
+      white: "0xc5cdd9"
+  
+    bright:
+      black: "0x375a4e"
+      red: "0xec7279"
+      green: "0xa0c980"
+      yellow: "0xdeb974"
+      blue: "0x6cb6eb"
+      magenta: "0xd38aea"
+      cyan: "0x6dbbc1"
+      white: "0xc6cd10"
 
 # Mouse
 mouse:
@@ -43,7 +37,8 @@ window:
     x: 3
     y: 3
   dynamic_padding: true
-  decorations: buttonless
+  decorations: full
+  # decorations: buttonless
 
 # Sample Font configuration for font: Monoid.
 # Feel free to use different font configuration family & face for each sections
@@ -77,7 +72,7 @@ font:
   # to your convenience but make sure to adjust 'glyph_offset' appropriately post that
   offset:
    x: 0
-   y: 5
+   y: 0
 
   # Note: This requires RESTART
   # By default when you change the offset above you'll see an issue, where the texts are bottom

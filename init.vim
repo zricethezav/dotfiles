@@ -23,6 +23,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/edge'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons' " Use https://github.com/ryanoasis/nerd-fonts
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'vim-test/vim-test'
 call plug#end()
 
 
@@ -36,11 +38,13 @@ set updatetime=100
 set cot=menuone,noinsert,noselect shm+=c
 set hid clipboard=unnamed backspace=indent,eol,start autoindent
 set expandtab ts=4 sw=4 si autowrite nu 
+set rnu
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp// undodir=.undo/,~/.undo/,/tmp//
 set mouse=a
 set spelllang=en_us
 set encoding=UTF-8
+set scrolloff=8
 
 " whitespace linter, usage :set list, :set nolist
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -69,6 +73,13 @@ set bg=dark
 let g:edge_style = 'neon'
 let g:edge_enable_italic = 1
 colorscheme edge
+" let g:one_allow_italics = 1 " I love italic for comments
+" colorscheme one
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 
 "
@@ -172,3 +183,25 @@ EOF
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+"
+" [ MARKDOWN ]
+"
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Firefox'
+
+
+"
+" [ TESTING ]
+"
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>tf :TestFile<CR>
+nnoremap <leader>ts :TestSuite<CR>
+nnoremap <leader>tl :TestLast<CR>
+nnoremap <leader>tg :TestVisit<CR>
+
+"
+" [ YAML ]
+"
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

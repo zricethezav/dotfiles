@@ -13,3 +13,5 @@
 [includeIf "gitdir:~/code/gitlab/"]
     path = .gitconfig-work
 
+[includeIf "gitdir:~/Gitlab/"]
+    path = .gitconfig-work
