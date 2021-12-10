@@ -7,6 +7,7 @@ Desktop.ini
 # Compiled Python files
 *.pyc
 
+/nvim/plugin/
 
 # Added by cargo
 
