@@ -1,11 +1,8 @@
-# Dotfiles 
+# Dotfiles
 
 ### Before you use this you need a couple things
-- neovim nightly
+- neovim (with packer)
 - tmux
-- vim-plug
-- tpm (Tmux Plugin Manager)
 - zsh
 - fzf
 - fasd
-- and probably a lot other things

@@ -4,11 +4,12 @@
 [alias]
     l = log --name-status
     lg = log --name-status --graph --decorate
-    bn = checkout -B 
+    bn = checkout -B
     co = checkout
+    clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
 
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 
 [includeIf "gitdir:~/code/gitlab/"]
     path = .gitconfig-work
