@@ -44,11 +44,12 @@ return packer.startup(function()
   use 'nvim-treesitter/nvim-treesitter'
 
   -- colorscheme
-  use {
-    'rose-pine/neovim', as = 'rose-pine',
-    require('rose-pine').set('main')
-  }
-  use {'jnurmine/Zenburn'}
+ -- use {
+ --   'rose-pine/neovim', as = 'rose-pine',
+ --    require('rose-pine').set('main')
+ -- }
+
+  use {'rebelot/kanagawa.nvim'}
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -60,11 +61,9 @@ return packer.startup(function()
   use {
     'hrsh7th/nvim-cmp',
     requires = {
-      'L3MON4D3/LuaSnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
-      'saadparwaiz1/cmp_luasnip',
     },
   }
 

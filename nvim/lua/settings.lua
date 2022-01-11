@@ -36,29 +36,19 @@ opt.linebreak = true          -- wrap on word boundary
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
 
-
--- highlight on yank
--- exec([[
---   augroup YankHighlight
---     autocmd!
---     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
---   augroup end
--- ]], false)
-
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
 opt.hidden = true         -- enable background buffers
 opt.history = 100         -- remember n lines in history
--- opt.lazyredraw = true     -- faster scrolling
+opt.lazyredraw = true     -- faster scrolling
 opt.synmaxcol = 240       -- max column for syntax highlight
 
 -----------------------------------------------------------
 -- Colorscheme
 -----------------------------------------------------------
 opt.termguicolors = true  -- enable 24-bit RGB colors
-cmd [[colorscheme rose-pine]]
--- cmd [[colorscheme zenburn ]]
+cmd [[colorscheme kanagawa]]
 
 -----------------------------------------------------------
 -- Tabs, indent
