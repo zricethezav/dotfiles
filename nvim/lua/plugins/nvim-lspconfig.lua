@@ -25,6 +25,39 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
+function golangImports(timeout_ms)
+  local context = { only = { 'source.organizeImports' } }
+  vim.validate { context = { context, 't', true } }
+
+  local params = vim.lsp.util.make_range_params()
+  params.context = context
+
+  local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, timeout_ms)
+  if not result then return end
+  local client_id, result = next(result)
+  if not client_id then return end
+  local client = vim.lsp.get_client_by_id(client_id)
+  if not client then return end
+  local actions = result.result
+  if not actions then return end
+  local action = actions[1]
+
+  -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+  -- is a CodeAction, it can have either an edit, a command or both. Edits
+  -- should be executed first.
+  if action.edit or type(action.command) == 'table' then
+    if action.edit then
+      vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+    end
+    if type(action.command) == 'table' then
+      vim.lsp.buf.execute_command(action.command, client.offset_encoding)
+    end
+  else
+    vim.lsp.buf.execute_command(action, client.offset_encoding)
+  end
+end
+
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -54,7 +87,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>f', ':lua golangImports(1000)<CR><cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
