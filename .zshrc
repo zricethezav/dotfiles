@@ -30,7 +30,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 setopt PROMPT_SUBST
-PROMPT='%~%F{red}$(parse_git_branch) %F{reset}'
+PROMPT='%F{blue}%~%F{green}$(parse_git_branch) %F{reset}'
 
 eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
