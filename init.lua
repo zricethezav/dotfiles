@@ -1,12 +1,14 @@
-local cmd = vim.cmd     				-- execute Vim commands
-local exec = vim.api.nvim_exec 	-- execute Vimscript
-local fn = vim.fn       				-- call Vim functions
-local g = vim.g         				-- global variables
-local opt = vim.opt         		-- global/buffer/windows-scoped options
-local map = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
+cmd = vim.cmd
+exec = vim.api.nvim_exec
+fn = vim.fn
+map = vim.api.nvim_set_keymap
 
-g.mapleader = '\\'            -- change leader to a comma
+-- leader
+g = vim.g
+g.mapleader = '\\'
+
+-- basic options
+opt = vim.opt
 opt.mouse = 'a'               -- enable mouse support
 opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
 opt.swapfile = false          -- don't use swapfile
@@ -19,49 +21,31 @@ opt.splitbelow = true         -- orizontal split to the bottom
 opt.ignorecase = true         -- ignore case letters when search
 opt.smartcase = true          -- ignore lowercase for the whole pattern
 opt.linebreak = true          -- wrap on word boundary
-
-opt.termguicolors = true  -- enable 24-bit RGB colors
-cmd [[colorscheme kanagawa]]
-
--- remove whitespace on save
-cmd [[au BufWritePre * :%s/\s\+$//e]]
-
 opt.hidden = true         -- enable background buffers
 opt.history = 100         -- remember n lines in history
 opt.lazyredraw = true     -- faster scrolling
 opt.synmaxcol = 240       -- max column for syntax highlight
-
 opt.expandtab = true      -- use spaces instead of tabs
 opt.shiftwidth = 4        -- shift 4 spaces when tab
 opt.tabstop = 4           -- 1 tab == 4 spaces
 opt.smartindent = true    -- autoindent new lines
 
+-- colors
+opt.termguicolors = true  -- enable 24-bit RGB colors
+cmd [[colorscheme kanagawa]]
+
+-- whitespace and tabs
+cmd [[au BufWritePre * :%s/\s\+$//e]]
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
-
 cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
-
 cmd [[
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
 ]]
 
 
-local nvim_lsp = require 'lspconfig'
-
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  },
-}
-
 -- bootstrap Packer plugin manager
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+ensure_packer = function()
+  install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
@@ -70,7 +54,7 @@ local ensure_packer = function()
   return false
 end
 
-local packer_bootstrap = ensure_packer()
+packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -139,13 +123,25 @@ local on_attach = function(client, bufnr)
 
 end
 
-local servers = { 'gopls' }
 
-local ts_settings = function(client)
+-- lsp config
+capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  },
+}
+
+-- tree-sitter settings
+nvim_lsp = require 'lspconfig'
+servers = { 'gopls' }
+ts_settings = function(client)
   client.resolved_capabilities.document_formatting = false
   ts_settings(client)
 end
-
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -157,7 +153,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local actions = require('telescope.actions')require('telescope').setup{
+-- telescope settings
+actions = require('telescope.actions')require('telescope').setup{
   pickers = {
     buffers = {
       sort_lastused = true
@@ -165,16 +162,13 @@ local actions = require('telescope.actions')require('telescope').setup{
   }
 }
 
-local cmp = require 'cmp'
-
-cmp.setup {
 -- completion settings
+cmp = require 'cmp'
+cmp.setup {
   completion = {
     --completeopt = 'menu,menuone,noselect'
     keyword_length = 2
   },
-
-  -- key mapping
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -187,8 +181,6 @@ cmp.setup {
       select = true,
     },
   },
-
-  -- load sources, see: https://github.com/topics/nvim-cmp
   sources = {
     { name = 'nvim_lsp' },
     { name = 'path' },
@@ -226,6 +218,7 @@ function golangImports(timeout_ms)
   end
 end
 
+default_opts = { noremap = true, silent = true }
 map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', default_opts)  -- refresh
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
