@@ -1,5 +1,6 @@
 [user]
     name = Zach Rice
+    email = zach@zach.com
 [alias]
     l = log --name-status
     lg = log --name-status --graph --decorate
