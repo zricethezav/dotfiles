@@ -1,6 +1,5 @@
 [user]
     name = Zach Rice
-    email = zricer@protonmail.com
 [alias]
     l = log --name-status
     lg = log --name-status --graph --decorate
@@ -10,9 +9,3 @@
 
 [core]
     excludesfile = ~/.gitignore
-
-[includeIf "gitdir:~/code/gitlab/"]
-    path = .gitconfig-work
-
-[includeIf "gitdir:~/Gitlab/"]
-    path = .gitconfig-work
