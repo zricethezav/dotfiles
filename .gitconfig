@@ -1,6 +1,6 @@
 [user]
     name = Zach Rice
-    email = zach@zach.com
+    email = zricer@protonmail.com
 [alias]
     l = log --name-status
     lg = log --name-status --graph --decorate
