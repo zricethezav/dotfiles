@@ -123,7 +123,6 @@ local on_attach = function(client, bufnr)
 
 end
 
-
 -- lsp config
 capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
@@ -166,7 +165,6 @@ actions = require('telescope.actions')require('telescope').setup{
 cmp = require 'cmp'
 cmp.setup {
   completion = {
-    --completeopt = 'menu,menuone,noselect'
     keyword_length = 2
   },
   mapping = {
@@ -230,4 +228,22 @@ map('n', ';', ':Telescope buffers<CR>', default_opts)  -- refresh
 require("nvim-tree").setup()
 require('nvim_comment').setup()
 require('gitsigns').setup()
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "rust", "go", "python", "json", "javascript"},
+  sync_install = false,
+  auto_install = false,
+  highlight = {
+    enable = true,
+    -- disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+    additional_vim_regex_highlighting = false,
+  },
+}
 
