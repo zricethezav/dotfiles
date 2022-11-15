@@ -1,5 +1,3 @@
-[user]
-    name = Zach Rice
 [alias]
     l = log --name-status
     lg = log --name-status --graph --decorate
