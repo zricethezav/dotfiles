@@ -5,6 +5,11 @@
 
 ### Before you use this you need a couple things
 - neovim (with packer)
+  - LSPs:
+    - gopls
+    - pyright
+  - linters:
+    - goimports
 - tmux
 - zsh
 - fzf
