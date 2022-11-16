@@ -36,4 +36,4 @@ eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export GOPATH=$HOME/Go
-export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin
+export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.local/bin
