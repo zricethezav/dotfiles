@@ -162,7 +162,7 @@ actions = require('telescope.actions')require('telescope').setup{
 }
 
 -- completion settings
-cmp = require 'cmp'
+local cmp = require 'cmp'
 cmp.setup {
   completion = {
     keyword_length = 2
