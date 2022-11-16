@@ -10,6 +10,7 @@
     - pyright
   - linters:
     - goimports
+    - autopep8
 - tmux
 - zsh
 - fzf

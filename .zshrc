@@ -35,6 +35,5 @@ PROMPT='%F{blue}%~%F{green}$(parse_git_branch) %F{reset}'
 eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
+export GOPATH=$HOME/Go
+export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin
