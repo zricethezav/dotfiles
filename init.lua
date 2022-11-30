@@ -39,7 +39,7 @@ cmd([[au BufWritePre * :%s/\s\+$//e]])
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 cmd([[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]])
 cmd([[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,lua setlocal shiftwidth=2 tabstop=2
 ]])
 
 -- bootstrap Packer plugin manager
@@ -185,8 +185,8 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	debug = true,
 	sources = {
-		null_ls.builtins.formatting.goimports,
-		-- null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.goimports,
+        null_ls.builtins.formatting.autopep8,
 	},
 })
 
