@@ -36,10 +36,6 @@ colors:
 mouse:
   hide_when_typing: true
 
-# Setup term for programs to be able to use it
-env:
-  TERM: alacritty
-
 window:
   padding:
     x: 10
