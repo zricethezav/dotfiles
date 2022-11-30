@@ -6,6 +6,7 @@
 There is no install script. Instead, you will need to install a few things yourself:
 
 - [oh-my-zsh](https://ohmyz.sh/#install)
+- [alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
 - [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
   - [packer]()
   - [gopls]() (lsp)
