@@ -1,3 +1,6 @@
+# path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # aliases
 alias vim='nvim'
 alias vi='nvim'
@@ -36,4 +39,4 @@ eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export GOPATH=$HOME/Go
-export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin
+export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.local/bin
