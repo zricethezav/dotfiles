@@ -39,7 +39,7 @@ cmd([[au BufWritePre * :%s/\s\+$//e]])
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 cmd([[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]])
 cmd([[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,lua setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml,html,xhtml,css,scss,javascript,yaml setlocal shiftwidth=2 tabstop=2
 ]])
 
 -- bootstrap Packer plugin manager
@@ -127,8 +127,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
-	-- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ timeout_ms = 10000 })<CR>", opts)
+	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ timeout_ms = 10000 })<CR>", opts)
 end
 
 -- lsp config
@@ -185,8 +184,8 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	debug = true,
 	sources = {
-        null_ls.builtins.formatting.goimports,
-        null_ls.builtins.formatting.autopep8,
+		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.autopep8,
 	},
 })
 
