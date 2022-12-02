@@ -16,7 +16,6 @@ There is no install script. Instead, you will need to install a few things yours
   - [nerd fonts](https://github.com/ryanoasis/nerd-fonts#font-installation) (font)
 - [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [fzf](https://github.com/junegunn/fzf#installation)
-- [fzf-tab](https://github.com/Aloxaf/fzf-tab)
 - [fasd](https://github.com/clvv/fasd/wiki/Installing-via-Package-Managers)
 
 I _think_ that's everything. You'll probably have to add a few items to your `$PATH` and maybe tweak a few other things.
