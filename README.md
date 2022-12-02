@@ -13,6 +13,7 @@ There is no install script. Instead, you will need to install a few things yours
   - [pyright](https://github.com/microsoft/pyright#command-line) (lsp)
   - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) (linter)
   - [autopep8](https://pypi.org/project/autopep8/) (linter)
+  - [nerd fonts](https://github.com/ryanoasis/nerd-fonts#font-installation) (font)
 - [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [fzf](https://github.com/junegunn/fzf#installation)
 - [fasd](https://github.com/clvv/fasd/wiki/Installing-via-Package-Managers)
