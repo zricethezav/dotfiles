@@ -1,5 +1,16 @@
+# completion
+autoload -Uz compinit && compinit
+
+# plugins
+plugins=(git fzf-tab)
+
 # path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
+# term
+export EDITOR=nvim
+export VISUAL=nvim
 
 # aliases
 alias vim='nvim'
@@ -21,12 +32,6 @@ function tk-all() {tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, le
 function tk() {tmux kill-session -t "$1"}
 function td() {tmux detach}
 function ta() {tmux a -t "$1"}
-fs() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf --query="$1" --select-1 --exit-0) &&
-  tmux switch-client -t "$session"
-}
 
 # prompt
 parse_git_branch() {
@@ -35,8 +40,13 @@ parse_git_branch() {
 setopt PROMPT_SUBST
 PROMPT='%F{blue}%~%F{green}$(parse_git_branch) %F{reset}'
 
+# navigation
 eval "$(fasd --init auto)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# paths
 export GOPATH=$HOME/Go
 export PATH=$PATH:$GOPATH/bin:$HOME/.cargo/bin:$HOME/Library/Python/3.8/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.local/bin
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
