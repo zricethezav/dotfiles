@@ -11,6 +11,7 @@ There is no install script. Instead, you will need to install a few things yours
   - [packer](https://github.com/wbthomason/packer.nvim#quickstart)
   - [gopls](https://github.com/golang/tools/tree/master/gopls#installation) (lsp)
   - [pyright](https://github.com/microsoft/pyright#command-line) (lsp)
+  - [clangd](https://clangd.llvm.org/installation.html) (lsp)
   - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports) (linter)
   - [autopep8](https://pypi.org/project/autopep8/) (linter)
   - [nerd fonts](https://github.com/ryanoasis/nerd-fonts#font-installation) (font)

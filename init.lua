@@ -142,7 +142,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 -- tree-sitter settings
 nvim_lsp = require("lspconfig")
-servers = { "gopls", "pyright" }
+servers = { "gopls", "pyright", "clangd" }
 ts_settings = function(client)
 	client.resolved_capabilities.document_formatting = true
 	ts_settings(client)
