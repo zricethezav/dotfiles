@@ -71,7 +71,15 @@ require("packer").startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("rebelot/kanagawa.nvim")
 	use("lukas-reineke/lsp-format.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvim-tree/nvim-web-devicons")
+
+	-- install without yarn or npm
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
 
 	use({
 		"hrsh7th/nvim-cmp",
@@ -85,6 +93,13 @@ require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+
+	use({
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup()
+		end,
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
@@ -123,11 +138,9 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
 	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ timeout_ms = 10000 })<CR>", opts)
 end
 
 -- lsp config
@@ -142,7 +155,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 -- tree-sitter settings
 nvim_lsp = require("lspconfig")
-servers = { "gopls", "pyright", "clangd" }
+servers = { "gopls", "clangd" }
 ts_settings = function(client)
 	client.resolved_capabilities.document_formatting = true
 	ts_settings(client)
@@ -179,24 +192,39 @@ cmp.setup({
 	sources = { { name = "nvim_lsp" }, { name = "path" }, { name = "buffer" } },
 })
 
--- formatting w/ null-ls
-local null_ls = require("null-ls")
-null_ls.setup({
-	debug = true,
-	sources = {
-		null_ls.builtins.formatting.goimports,
-		null_ls.builtins.formatting.autopep8,
+-- conform formatting settings
+require("conform").setup({
+	formatters_by_ft = {
+		go = { "goimports", "gofmt" },
+		lua = { "stylua" },
+		-- Conform will run multiple formatters sequentially
+		python = { "isort", "black" },
+		-- You can customize some of the format options for the filetype (:help conform.format)
+		rust = { "rustfmt", lsp_format = "fallback" },
+		-- Conform will run the first available formatter
+		javascript = { "prettierd", "prettier", stop_after_first = true },
 	},
 })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
+	end,
+})
 
+-- keymaps
 default_opts = { noremap = true, silent = true }
 map("n", "<C-n>", ":NvimTreeToggle<CR>", default_opts) -- open/close
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", default_opts) -- refresh
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", default_opts) -- search file
 
+map("n", "<leader>w", ":w<CR>", default_opts) -- refresh
 map("n", "<leader>f", ":Telescope find_files<CR>", default_opts) -- refresh
 map("n", "<leader>s", ":Telescope live_grep<CR>", default_opts) -- refresh
 map("n", ";", ":Telescope buffers<CR>", default_opts) -- refresh
+map("n", "g?", "<cmd>lua vim.diagnostic.open_float()<CR>", default_opts)
+map("n", "<leader>p", ":MarkdownPreview<CR>", default_opts) -- refresh
+map("n", "<leader>ps", ":MarkdownPreviewStop<CR>", default_opts) -- refresh
 
 require("nvim-tree").setup()
 require("nvim_comment").setup()
